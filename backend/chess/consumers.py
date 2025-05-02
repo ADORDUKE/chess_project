@@ -126,6 +126,8 @@ class ChessConsumer(AsyncWebsocketConsumer):
     async def game_message(self,event):
         await self.send(text_data=json.dumps(event['message']))
     
+
+    # Декоратор @database_sync_to_async позволяет вызывать обычные (синхронные) методы Django ORM из асинхронного кода.
     @database_sync_to_async
     def get_game(self):
         try:
